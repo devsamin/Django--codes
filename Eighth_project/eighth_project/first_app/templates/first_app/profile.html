@@ -1,0 +1,35 @@
+{% extends "first_app/base.html" %}
+{% load crispy_forms_tags %}
+{% block body %}
+<h1>Welcome to our profile page</h1>
+<h1>Hello : {{user}}</h1>
+{% if messages %}
+        {% for m in messages %}
+            <p>{{m}}</p>
+        {% endfor %}
+    {% endif %}
+<a class="btn btn-info" href="{% url 'passchange' %}">Change your password</a>
+<a class="btn btn-info" href="{% url 'passchange2' %}">Change your password without old password</a></p>
+
+<form method="post" style="width : 50%; margin: auto" novalidate>
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+        {% for fm in form.non_field_errors %}
+        <small class="text-danger">{{fm}}</small>
+        
+        {% endfor %}
+        
+        {% endif %}
+        {% comment %} {{form | crispy}} {% endcomment %}
+        {% for fm in form %}
+            <div class="mb-3">
+                {{fm.label_tag}}
+                {{fm}}
+            </div>
+            <div class="text-danger">{{fm.errors | striptags }}</div>
+        
+        {% endfor %}
+
+        <button class="btn btn-primary" type="submit">Change Data</button>
+    </form>
+{% endblock body %}

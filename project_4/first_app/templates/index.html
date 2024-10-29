@@ -1,0 +1,26 @@
+{% extends "base.html" %} {% load static %} {% block content %} {{block.super}}
+<h2>{{id.rohim}}</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Username</th>
+      <th scope="col">Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for i in data %}
+    <tr>
+      <th scope="row">{{i.id}}</th>
+      <td>{{i.name}}</td>
+      <td>{{i.username}}</td>
+      <td>{{i.email}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<h1>This is inside app page.</h1>
+<img src="{% static 'images/ney_pic.jfif' %}" alt="ney" />
+{% endblock content %}
